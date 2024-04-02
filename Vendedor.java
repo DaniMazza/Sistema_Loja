@@ -5,7 +5,7 @@ public class Vendedor extends Pessoa{
     private double percentualComissao;
     private LocalDate dataAdmissao;
 
-    public Vendedor() {}
+    public Vendedor() { }
     public Vendedor(String matricula, double percentualComissao, LocalDate dataAdmissao) {
         this.matricula = matricula;
         this.percentualComissao = percentualComissao;

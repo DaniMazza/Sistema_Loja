@@ -4,7 +4,7 @@ public class Produto {
     private int quantidadeMaxima;
     private int codigo;
 
-    public Produto() {}
+    public Produto() { }
     public Produto(String nome) { this.nome = nome; }
     public Produto(String nome, double valor, int quantidadeMaxima, int codigo) {
         this.nome = nome;
