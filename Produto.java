@@ -1,29 +1,19 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Objects;
 
-public class Produto {
+public class Produto implements Comparable<Produto> {
     private String nome;
     private double valor;
     private int quantidadeMaxima;
-    private int codigo;
-    private Set<Produto> produtos;
+    private int codigo = 10100;
+    private static int proximoCodigo = 100;
 
     public  Produto() {
-        if (produtos.isEmpty()){
-            produtos = new HashSet<>();
-        }
     }
-    public Produto(String nome, double valor, int quantidadeMaxima, int codigo) {
+    public Produto(String nome, double valor, int quantidadeMaxima) {
         this.nome = nome;
         this.valor = valor;
         this.quantidadeMaxima = quantidadeMaxima;
-        this.codigo = codigo;
-        if (produtos.isEmpty()){
-            produtos = new HashSet<>();
-        }
-    }
-    private void adicionar(Produto produto) {
-        produtos.add(produto);
+        this.codigo = proximoCodigo++;
     }
 
     public String getNome() { return nome; }
@@ -34,4 +24,25 @@ public class Produto {
     public void setQuantidadeMaxima(int quantidadeMaxima) { this.quantidadeMaxima = quantidadeMaxima; }
     public int getCodigo() { return codigo; }
     public void setCodigo(int codigo) { this.codigo = codigo; }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Produto)) return false;
+        Produto produto = (Produto) o;
+        return getCodigo() == produto.getCodigo() && Objects.equals(getNome(), produto.getNome());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNome(), getCodigo());
+    }
+
+
+    @Override
+    public int compareTo(Produto produto) {
+
+        return this.nome.compareTo(produto.getNome());
+    }
 }

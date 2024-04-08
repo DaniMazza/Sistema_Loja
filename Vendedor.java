@@ -1,31 +1,19 @@
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Objects;
 
-public class Vendedor extends Pessoa{
+public class Vendedor extends Pessoa implements Comparable<Vendedor>{
     private String matricula;
     private double percentualComissao;
     private LocalDate dataAdmissao;
-    private Set<Vendedor> vendedores;
-
-    public  Vendedor() {
-        if (vendedores.isEmpty()){
-            vendedores = new HashSet<>();
-        }
-    }
+    public  Vendedor() {}
 
     public Vendedor(String nome, String cpf, String matricula, double percentualComissao, LocalDate dataAdmissao) {
         super(nome, cpf);
         this.matricula = matricula;
         this.percentualComissao = percentualComissao;
         this.dataAdmissao = dataAdmissao;
-        if (vendedores.isEmpty()){
-            vendedores = new HashSet<>();
-        }
     }
-    private void adicionar(Vendedor vendedor) {
-        vendedores.add(vendedor);
-    }
+
 
     public String getMatricula() {
         return matricula;
@@ -49,5 +37,22 @@ public class Vendedor extends Pessoa{
 
     public void setDataAdmissao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vendedor)) return false;
+        Vendedor vendedor = (Vendedor) o;
+        return Objects.equals(getMatricula(), vendedor.getMatricula());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMatricula());
+    }
+    @Override
+    public int compareTo(Vendedor vendedor) {
+        return this.getNome().compareTo(vendedor.getNome());
     }
 }
