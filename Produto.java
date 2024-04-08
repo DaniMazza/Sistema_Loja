@@ -1,16 +1,29 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class Produto {
     private String nome;
     private double valor;
     private int quantidadeMaxima;
     private int codigo;
+    private Set<Produto> produtos;
 
-    public Produto() { }
-    public Produto(String nome) { this.nome = nome; }
+    public  Produto() {
+        if (produtos.isEmpty()){
+            produtos = new HashSet<>();
+        }
+    }
     public Produto(String nome, double valor, int quantidadeMaxima, int codigo) {
         this.nome = nome;
         this.valor = valor;
         this.quantidadeMaxima = quantidadeMaxima;
         this.codigo = codigo;
+        if (produtos.isEmpty()){
+            produtos = new HashSet<>();
+        }
+    }
+    private void adicionar(Produto produto) {
+        produtos.add(produto);
     }
 
     public String getNome() { return nome; }

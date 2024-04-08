@@ -2,9 +2,17 @@ public class PedidoItem {
     private Produto produto;
     private int quantidade;
 
+    public PedidoItem() {
+    }
+
     public PedidoItem(Produto produto, int quantidade) {
         this.produto = produto;
-        this.quantidade = quantidade;
+        if (quantidade > produto.getQuantidadeMaxima()) {
+          throw new QuantidadeNaoPermitadaException("Quantidade de itens requecitados maior do que o máximo permitido");
+        }
+        else {
+            this.quantidade =  quantidade;
+        }
     }
 
     public Produto getProduto() {
@@ -19,7 +27,13 @@ public class PedidoItem {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidade(Produto produto, int quantidade) {
+
+        if (quantidade > produto.getQuantidadeMaxima()) {
+            throw new QuantidadeNaoPermitadaException("Quantidade de itens requecitados maior do que o máximo permitido");
+        }
+        else {
+            this.quantidade =  quantidade;
+        }
     }
 }
