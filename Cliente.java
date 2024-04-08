@@ -3,19 +3,10 @@ import java.util.Objects;
 
 public class Cliente  extends  Pessoa implements Comparable<Cliente>{
     private LocalDate dataCadastro;
-    private int id = 100;
 
     public Cliente(String nome, String cpf, LocalDate dataCadastro) {
         super(nome, cpf);
         this.dataCadastro = dataCadastro;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public LocalDate getDataCadastro() { return dataCadastro; }
